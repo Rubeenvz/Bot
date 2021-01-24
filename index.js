@@ -1,15 +1,15 @@
 const dotEnv = require("dotenv").config();
 const telegraf = require('telegraf')
 
+let bot_controllers = require("./controllers/bot.controller");
+
 const bot = new telegraf.Telegraf(process.env.BOT_TOKEN)
 
-bot.start((ctx) => {
-	ctx.reply('Welcome')
-})
+bot.start(bot_controllers.start)
 
-bot.help((ctx) => {
-	ctx.reply('Send me a sticker')
-})
+bot.help(bot_controllers.help)
+
+bot.command('command', bot_controllers.command)
 
 bot.launch()
 
