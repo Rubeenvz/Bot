@@ -1,3 +1,3 @@
 module.exports = {
-  NEW_USER: "",
+  FAILED: "Failed",
 }  
