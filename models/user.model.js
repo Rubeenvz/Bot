@@ -14,8 +14,22 @@ const UserSchema = Schema({
     type: String,
     require: false,
   },
+  username: {
+    type: String,
+    require: false,
+  },
   is_bot: {
     type: Boolean,
+    require: false,
+  },
+  is_available: {
+    type: Boolean,
+    default: false,
+    require: false,
+  },
+  level: {
+    type: Number,
+    default: 0,
     require: false,
   }
 })

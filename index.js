@@ -13,9 +13,9 @@ const bot = new telegraf.Telegraf(process.env.BOT_TOKEN)
 
 bot.start(bot_controllers.start)
 
-bot.help(bot_controllers.help)
+bot.command('signUp', bot_controllers.signUp)
 
-bot.command('command', bot_controllers.command)
+bot.help(bot_controllers.help)
 
 bot.launch()
 
