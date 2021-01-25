@@ -6,7 +6,7 @@ module.exports = {
   },
   HELP: `
   Lista de comandos: \n\n
-  /delete: Eliminar un usario por id.\n
+  /quit: Eliminar un usario por id.\n
   /levelUp: Subir el nivel de un usuario por id.\n
   /levelDown: Bajar el nivel de un usuario por id.\n
   /acceptUser: Aceptar un usuario por id.\n
