@@ -16,19 +16,20 @@ const start = async (ctx) => {
     ctx.reply(BOT_CONTROLLER.TRY_AGAIN)
   }
   if(responseObj.data.user == null) {
-    ctx.reply(BOT_CONTROLLER.START.NOT_REGISTERED)
-    ctx.reply(BOT_CONTROLLER.GET_HELP)
+    ctx.reply(USER_MESSAGES.START.NOT_REGISTERED)
+    ctx.reply(USER_MESSAGES.GET_HELP)
   }
   else {
     if(responseObj.data.user.is_available) {
-      ctx.reply(BOT_CONTROLLER.START.IS_AVAILABLE)
-      ctx.reply(BOT_CONTROLLER.GET_HELP)
+      ctx.reply(USER_MESSAGES.START.IS_AVAILABLE)
+      ctx.reply(USER_MESSAGES.GET_HELP)
     }
     else {
-      ctx.reply(BOT_CONTROLLER.START.IS_REGISTERED)
-      ctx.reply(BOT_CONTROLLER.GET_HELP)
+      ctx.reply(USER_MESSAGES.START.IS_REGISTERED)
+      ctx.reply(USER_MESSAGES.GET_HELP)
     }      
   }
+  ctx.reply(USER_MESSAGES.HELP)
   return responseObj
 }
 
@@ -56,35 +57,40 @@ const signUp = async (ctx) => {
       let responseFromService = await user_services.getCurrentUser({chat_id: ctx.from.id});
       if(responseFromService.data.user.is_available) {
           ctx.reply(BOT_CONTROLLER.SIGN_UP.USER_ALREADY_REGISTERED.IS_AVAILABLE)
-          ctx.reply(BOT_CONTROLLER.GET_HELP)
+          ctx.reply(USER_MESSAGES.GET_HELP)
         }
       else {
-        ctx.reply(BOT_CONTROLLER.SIGN_UP.USER_ALREADY_REGISTERED.NOT_AVAILABLE)
-        ctx.reply(BOT_CONTROLLER.GET_HELP)
+        ctx.reply(USER_MESSAGES.SIGN_UP.USER_ALREADY_REGISTERED.NOT_AVAILABLE)
+        ctx.reply(USER_MESSAGES.GET_HELP)
       }
     } catch (err) {
       console.log("Something went wrong with: bot.controller.signUp", err);
-      ctx.reply(BOT_CONTROLLER.TRY_AGAIN)
+      ctx.reply(USER_MESSAGES.TRY_AGAIN)
     }
     return responseObj
   }
   if(responseObj.data.user != null) {
-    ctx.reply(BOT_CONTROLLER.SIGN_UP.NOT_REGISTERED)
-    ctx.reply(BOT_CONTROLLER.GET_HELP)
+    ctx.reply(USER_MESSAGES.SIGN_UP.NOT_REGISTERED)
+    ctx.reply(USER_MESSAGES.GET_HELP)
+    ctx.telegram.sendMessage(process.env.ADMIN_ID, ADMIN_MESSAGES.SIGN_UP.NEW_USER)
+    ctx.telegram.sendMessage(process.env.ADMIN_ID, responseObj.data.user)
   }
   else {
     if(responseObj.data.user.is_available) {
-      ctx.reply(BOT_CONTROLLER.START.IS_AVAILABLE)
+      ctx.reply(USER_MESSAGES.START.IS_AVAILABLE)
     }
     else {
-      ctx.reply(BOT_CONTROLLER.START.IS_REGISTERED)
+      ctx.reply(USER_MESSAGES.START.IS_REGISTERED)
     } 
   }
   return responseObj
 }
 
 const help = (ctx) => {
-  ctx.reply('Help')
+  if(ctx.from.id == process.env.ADMIN_ID) {
+    ctx.reply(ADMIN_MESSAGES.HELP)
+  }
+  ctx.reply(USER_MESSAGES.HELP)
 }
 
 module.exports = {

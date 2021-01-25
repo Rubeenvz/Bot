@@ -9,7 +9,7 @@ const connect = new Promise(function (resolve, reject) {
     useCreateIndex: true
   })
   .then(() => {
-    resolve('Success')
+    resolve("Success")
   })
   .catch((error) => {
     reject(error)
