@@ -9,6 +9,7 @@ module.exports = {
       IS_AVAILABLE: "Tu cuenta ha sido registrada correctamente en el sistema con anterioridad y ya se encuentra disponible. Muchas gracias.",
       NOT_AVAILABLE: "Tu cuenta ha sido registrada correctamente en el sistema con anterioridad. Para continuar con el proceso envía un mensaje a "+process.env.ADMIN_USER+" para validar tu información.",
     },
+    NOT_USERNAME: "Necesitas un nombre de usuario para registrarte en nuestro sistema.",
     NOT_REGISTERED: "Tu cuenta ha sido registrada correctamente en el sistema. Para continuar con el proceso envía un mensaje a "+process.env.ADMIN_USER+" para validar tu información.",
     IS_REGISTERED: "Tu cuenta ya se encuentra registrada en el sistema. Para continuar con el proceso y comenzar a recibir las notificaciones, envía un mensaje a "+process.env.ADMIN_USER+" para validar tu información.",
     IS_AVAILABLE: "Tu cuenta ya esta disponible en nuestro sistema.",
@@ -25,6 +26,10 @@ module.exports = {
   },
   UNACCEPT_USER: {
     SUCCESSFUL: "Tu cuenta ya no esta disponible en nuestro sistema.",
+  },
+  QUIT: {
+    NOT_AVAILABLE: "No tienes una cuenta en nuestro sistema. Para comenzar utiliza el comando /start.",
+    SUCCESSFUL: "Tu cuenta ha sido deshabilitada de nuestro sistema."
   },
   HELP: `
   Lista de comandos: \n\n

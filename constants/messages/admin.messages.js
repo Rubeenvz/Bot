@@ -6,11 +6,14 @@ module.exports = {
   },
   ACCEPT_USER: {
     FAILED: "El usuario no fue encontrado.",
-    SUCCESSFUL: "El usuario fue encontrado y se actualizo el estado de su cuenta."
+    SUCCESSFUL: "Nueva notificación: "+date_helpers.date()+"\nEl usuario fue encontrado y se actualizo el estado de su cuenta."
   },
   UNACCEPT_USER: {
     FAILED: "El usuario no fue encontrado.",
-    SUCCESSFUL: "El usuario fue encontrado y se actualizo el estado de su cuenta."
+    SUCCESSFUL: "Nueva notificación: "+date_helpers.date()+"\nEl usuario fue encontrado y se actualizo el estado de su cuenta."
+  },
+  QUIT: {
+    SUCCESSFUL: "Nueva notificación: "+date_helpers.date()+"\nEl usuario cambio el estado de su cuenta a *no disponible*"
   },
   HELP: `
   Lista de comandos: \n\n

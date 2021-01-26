@@ -13,7 +13,11 @@ module.exports = {
   },
   ACCEPT_USER: {
     FAILED: "Lo sentimos, no hemos podido cambiar el estado de la cuenta.",
-    SUCCESSFUL: "La cuenta ya esta disponible",
+    SUCCESSFUL: "La cuenta ya esta disponible.",
+  },
+  QUIT: {
+    FAILED: "Lo sentimos, no hemos podido cambiar el estado de la cuenta.",
+    SUCCESSFUL: "La cuenta ya no esta disponible.",
   },
   TRY_AGAIN: "Ha ocurrido un error, vuelve a intentarlo en unos segundos.",
 }  

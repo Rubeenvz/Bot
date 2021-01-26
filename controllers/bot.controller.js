@@ -37,6 +37,10 @@ const signUp = async (ctx) => {
   let responseObj = {
     status: BOT_CONTROLLER.SIGN_UP.FAILED
   }
+  if(!ctx.from.username) {
+    ctx.reply(USER_MESSAGES.SIGN_UP.NOT_USERNAME)
+    return responseObj
+  }
   let data = {
     chat_id: ctx.from.id,
     name: ctx.from.first_name,
@@ -125,7 +129,33 @@ const levelDown = async (ctx) => {
 
 const quit = async (ctx) => {
   await ctx.reply("*Mi ID:"+ctx.from.id+"*\n\n")
-
+  let responseObj = {
+    status: BOT_CONTROLLER.QUIT.FAILED
+  }
+  try {
+    let responseFromService = await user_services.editUser({
+      filter: {
+        chat_id: ctx.from.id
+      },
+      data: {
+        is_available: false
+      }
+    })
+    responseObj.data = responseFromService.data
+    responseObj.status = BOT_CONTROLLER.QUIT.SUCCESSFUL
+  } catch (err) {
+    console.log("Something went wrong with: bot.controller.level", err)
+    ctx.reply(BOT_CONTROLLER.TRY_AGAIN)
+  }
+  if(responseObj.data.user) {
+    ctx.telegram.sendMessage(process.env.ADMIN_ID, ADMIN_MESSAGES.QUIT.SUCCESSFUL)
+    ctx.reply(USER_MESSAGES.QUIT.SUCCESSFUL)
+  }
+  else {
+    ctx.reply(USER_MESSAGES.QUIT.NOT_AVAILABLE)
+  }
+  ctx.reply(USER_MESSAGES.GET_HELP)
+  return responseObj
 }
 
 const acceptUser = async (ctx) => {
