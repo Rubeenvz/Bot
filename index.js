@@ -23,7 +23,9 @@ bot.command("levelDown", bot_controllers.levelDown)
 
 bot.command("quit", bot_controllers.quit)
 
-bot.command("acceptUser:", bot_controllers.acceptUser)
+bot.command("acceptUser", bot_controllers.acceptUser)
+
+bot.command("unacceptUser", bot_controllers.unacceptUser)
 
 bot.help(bot_controllers.help)
 

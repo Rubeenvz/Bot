@@ -33,7 +33,24 @@ const signUp = async (data) => {
   return responseObj
 }
 
+const editUser = async (data) => {
+  let responseObj = {
+    status: USER_SERVICE.EDIT_USER.FAILED
+  }
+  try {
+    const userEdited = await User.findOneAndUpdate(data.filter, data.data)
+    responseObj.status = USER_SERVICE.EDIT_USER.SUCCESSFUL
+    responseObj.data = {
+      user: userEdited,
+    }
+  } catch (err) {
+    console.log("Something went wrong with: user.services.signUp", err)
+  }
+  return responseObj
+}
+
 module.exports = {
   getCurrentUser,
-  signUp
+  signUp,
+  editUser
 }

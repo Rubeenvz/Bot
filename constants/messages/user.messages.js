@@ -20,6 +20,12 @@ module.exports = {
       NOT_AVAILABLE: "Tu cuenta aun no esta disponible. Para continuar con el proceso envía un mensaje a "+process.env.ADMIN_USER+" para validar tu información.",
     },
   },
+  ACCEPT_USER: {
+    SUCCESSFUL: "Tu cuenta ya esta disponible en nuestro sistema.",
+  },
+  UNACCEPT_USER: {
+    SUCCESSFUL: "Tu cuenta ya no esta disponible en nuestro sistema.",
+  },
   HELP: `
   Lista de comandos: \n\n
   /start: Comenzar a utilizar ${process.env.APP_NAME}.\n
@@ -29,5 +35,6 @@ module.exports = {
   /help: Ver todos los comandos disponibles.\n
   /quit: Eliminar mi cuenta en ${process.env.APP_NAME}.\n
   `,
+  NO_PERMISSION: "No tienes permiso para acceder a este comando.",
   GET_HELP: "Utiliza el comando /help si necesitas ayuda. Para cualquier duda, sugerencia o ayuda personalizada envia un mensaje a: "+process.env.ADMIN_USER+"."
 }  
