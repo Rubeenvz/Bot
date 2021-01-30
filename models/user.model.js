@@ -31,6 +31,10 @@ const UserSchema = Schema({
     type: Number,
     default: 0,
     require: false,
+  },
+  registration_date: {
+    type: Date,
+    default: new Date()
   }
 })
 

@@ -8,10 +8,6 @@ module.exports = {
     FAILED: "El usuario no fue encontrado.",
     SUCCESSFUL: "Nueva notificación: "+date_helpers.date()+"\nEl usuario fue encontrado y se actualizo el estado de su cuenta."
   },
-  UNACCEPT_USER: {
-    FAILED: "El usuario no fue encontrado.",
-    SUCCESSFUL: "Nueva notificación: "+date_helpers.date()+"\nEl usuario fue encontrado y se actualizo el estado de su cuenta."
-  },
   QUIT: {
     SUCCESSFUL: "Nueva notificación: "+date_helpers.date()+"\nEl usuario cambio el estado de su cuenta a *no disponible.*"
   },
@@ -24,8 +20,8 @@ module.exports = {
   },
   HELP: `
   Lista de comandos: \n
-  /quit: Eliminar un usario por id.\n
-  /levelDown: Bajar el nivel de un usuario por id.\n
+  /quit: Deshabilitar un usario por id.\n
+  /levelUp: Bajar el nivel de un usuario por id.\n
   /acceptUser: Aceptar un usuario por id.\n
   /unacceptUser: UnAceptar un usuario por id.\n
   `,

@@ -15,6 +15,8 @@ bot.start(bot_controllers.start)
 
 bot.command("signUp", bot_controllers.signUp)
 
+bot.command("viewLevels", bot_controllers.viewLevels)
+
 bot.command("level", bot_controllers.level)
 
 bot.command("levelUp", bot_controllers.levelUp)
@@ -22,8 +24,6 @@ bot.command("levelUp", bot_controllers.levelUp)
 bot.command("quit", bot_controllers.quit)
 
 bot.command("acceptUser", bot_controllers.acceptUser)
-
-bot.command("unacceptUser", bot_controllers.unacceptUser)
 
 bot.help(bot_controllers.help)
 

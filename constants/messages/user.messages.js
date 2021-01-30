@@ -26,9 +26,6 @@ module.exports = {
   ACCEPT_USER: {
     SUCCESSFUL: "Tu cuenta ya esta disponible en nuestro sistema.",
   },
-  UNACCEPT_USER: {
-    SUCCESSFUL: "Tu cuenta ya no esta disponible en nuestro sistema.",
-  },
   QUIT: {
     NOT_AVAILABLE: "No tienes una cuenta en nuestro sistema. Para comenzar utiliza el comando /start.",
     SUCCESSFUL: "Tu cuenta ha sido deshabilitada de nuestro sistema."
@@ -41,14 +38,24 @@ module.exports = {
       NOT_AVAILABLE: "Tu cuenta aun no esta disponible. Para continuar con el proceso envía un mensaje a "+process.env.ADMIN_USER+" para validar tu información.",
     },
   },
+  VIEW_LEVELS: `
+  Niveles de usuario:\n
+  Nivel 0: \n
+  Nivel 1: \n
+  Nivel 2: \n
+  Nivel 3: \n
+  Nivel 4: \n
+  Nivel 5: \n
+  `,
   HELP: `
-  Lista de comandos: \n
+  Lista de comandos:\n
   /start: Comenzar a utilizar ${process.env.APP_NAME}.\n
   /signUp: Registrarme en ${process.env.APP_NAME}.\n
+  /viewLevels: Ver los niveles de usuario.\n
   /level: Ver mi nivel de usuario.\n
   /levelUp: Subir mi nivel de usuario.\n
   /help: Ver todos los comandos disponibles.\n
-  /quit: Eliminar mi cuenta en ${process.env.APP_NAME}.\n
+  /quit: Deshabilitar mi cuenta en ${process.env.APP_NAME} para no recibir más notificaciones.\n
   `,
   ID: (id) => "* Mi ID: "+id+" *",
   NO_PERMISSION: "No tienes permiso para acceder a este comando.",
