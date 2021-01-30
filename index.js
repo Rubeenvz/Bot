@@ -25,6 +25,8 @@ bot.command("quit", bot_controllers.quit)
 
 bot.command("acceptUser", bot_controllers.acceptUser)
 
+bot.command("newPaymentDate", bot_controllers.newPaymentDate)
+
 bot.help(bot_controllers.help)
 
 bot.launch()

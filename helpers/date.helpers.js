@@ -1,8 +1,8 @@
 const moment = require("moment")
 
-const date = () => {
+const date = (days = 0) => {
   moment.locale('es');
-  return moment().format('LLL');
+  return moment().add(days, 'days').format('LLL');
 }
 
 module.exports = {

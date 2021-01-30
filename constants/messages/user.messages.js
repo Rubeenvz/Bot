@@ -2,7 +2,7 @@ const date_helpers = require("../../helpers/date.helpers")
 
 module.exports = {
   START: {
-    NOT_REGISTERED: "Hola, bienvenido a "+process.env.APP_NAME+". Aún no has sido registrado en el sistema. Para comenzar a recibir las notificaciones registrate utilizando el comando /signUp. Muchas gracias.",
+    NOT_REGISTERED: "Hola, bienvenido a *"+process.env.APP_NAME+"*. Aún no has sido registrado en el sistema. Para comenzar a recibir las notificaciones registrate utilizando el comando /signUp. Muchas gracias.",
     IS_REGISTERED: "Bienvenido nuevamente, tu cuenta se encuentra registrada en el sistema. Para continuar con el proceso y comenzar a recibir notificaciones, envía un mensaje a "+process.env.ADMIN_USER+" para validar tu información. Muchas gracias.",
     IS_AVAILABLE: "Bienvenido nuevamente, tu cuenta ya esta registrada y disponible en nuestro sistema. Muchas gracias."
   },
@@ -31,12 +31,15 @@ module.exports = {
     SUCCESSFUL: "Tu cuenta ha sido deshabilitada de nuestro sistema."
   },
   LEVEL_UP: {
-    NOT_REGISTERED: "Aun no tienes una cuenta en "+process.env.APP_NAME+". Escribe el comando /start para comenzar.",
+    NOT_REGISTERED: "Aun no tienes una cuenta en *"+process.env.APP_NAME+"*. Escribe el comando /start para comenzar.",
     SUCCESSFUL: (level) => "Tu nivel de usuario fue actualizado por "+process.env.ADMIN_USER+" a: "+level+".",
     USER_ALREADY_REGISTERED: {
       IS_AVAILABLE: (level) => "Tu nivel de usuario es "+level+".\n\nPara conocer los niveles de usuario utiliza el comando /viewLevels.\n\nEn unos momentos "+process.env.ADMIN_USER+" te enviara un mensaje para continuar con el proceso.",
       NOT_AVAILABLE: "Tu cuenta aun no esta disponible. Para continuar con el proceso envía un mensaje a "+process.env.ADMIN_USER+" para validar tu información.",
     },
+  },
+  NEW_PAYMENT_DATE: {
+    SUCCESSFUL: "*Nueva notificación: "+date_helpers.date()+"*\n*Tu fecha de pago se actualizo a: "+date_helpers.date()+". Recibiras notificaciones hasta el dia: "+date_helpers.date(8)
   },
   VIEW_LEVELS: `
   Niveles de usuario:\n

@@ -23,5 +23,9 @@ module.exports = {
     FAILED: "Lo sentimos, no hemos podido encontrar tu nivel de usuario.",
     SUCCESSFUL: "El nivel de usuario ha sido encontrado correctamente.",
   },
+  NEW_PAYMENT_DATE: {
+    FAILED: "Lo sentimos, no hemos podido cambiar la fecha de pago de la cuenta.",
+    SUCCESSFUL: "La fecha de pago de la cuenta ha sido actualizada"
+  },
   TRY_AGAIN: "Ha ocurrido un error, vuelve a intentarlo en unos segundos.",
 }  

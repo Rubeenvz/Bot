@@ -35,6 +35,10 @@ const UserSchema = Schema({
   registration_date: {
     type: Date,
     default: new Date()
+  },
+  last_payment_date: {
+    type: Date,
+    default: new Date()
   }
 })
 
