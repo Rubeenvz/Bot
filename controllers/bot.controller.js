@@ -142,7 +142,7 @@ const levelUp = async (ctx) => {
       responseObj.data = responseFromService.data
       responseObj.status = BOT_CONTROLLER.LEVEL_UP.SUCCESSFUL
     } catch (err) {
-      console.log("Something went wrong with: bot.controller.LEVEL_UP", (SHOW_ERROR ? err : ''))
+      console.log("Something went wrong with: bot.controller.levelUp", (SHOW_ERROR ? err : ''))
       ctx.reply(BOT_CONTROLLER.TRY_AGAIN)
     }
     if(responseObj.data.user) {
