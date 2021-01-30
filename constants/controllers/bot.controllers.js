@@ -19,5 +19,9 @@ module.exports = {
     FAILED: "Lo sentimos, no hemos podido cambiar el estado de la cuenta.",
     SUCCESSFUL: "La cuenta ya no esta disponible.",
   },
+  LEVEL_UP: {
+    FAILED: "Lo sentimos, no hemos podido encontrar tu nivel de usuario.",
+    SUCCESSFUL: "El nivel de usuario ha sido encontrado correctamente.",
+  },
   TRY_AGAIN: "Ha ocurrido un error, vuelve a intentarlo en unos segundos.",
 }  

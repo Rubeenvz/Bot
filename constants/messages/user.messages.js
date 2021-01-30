@@ -1,3 +1,5 @@
+const date_helpers = require("../../helpers/date.helpers")
+
 module.exports = {
   START: {
     NOT_REGISTERED: "Hola, bienvenido a "+process.env.APP_NAME+". Aún no has sido registrado en el sistema. Para comenzar a recibir las notificaciones registrate utilizando el comando /signUp. Muchas gracias.",
@@ -15,9 +17,9 @@ module.exports = {
     IS_AVAILABLE: "Tu cuenta ya esta disponible en nuestro sistema.",
   },
   LEVEL: {
-    NOT_REGISTERED: "Aun no has sido registrado en "+process.env.APP_NAME+". Escribe el comando /start para comenzar.",
+    NOT_REGISTERED: "Aun no tienes una cuenta en "+process.env.APP_NAME+". Escribe el comando /start para comenzar.",
     USER_ALREADY_REGISTERED: {
-      IS_AVAILABLE: (level) => "Tu nivel de usuario es "+level+".\n\nPara conocer los niveles de usuario utiliza el comando /viewLevels.\n\nPara aumentar tu nivel de usuario utiliza el comando /levelUp",
+      IS_AVAILABLE: (level) => "Tu nivel de usuario es "+level+".\n\nPara conocer los niveles de usuario utiliza el comando /viewLevels.\n\nPara aumentar tu nivel de usuario utiliza el comando /levelUp.",
       NOT_AVAILABLE: "Tu cuenta aun no esta disponible. Para continuar con el proceso envía un mensaje a "+process.env.ADMIN_USER+" para validar tu información.",
     },
   },
@@ -31,8 +33,16 @@ module.exports = {
     NOT_AVAILABLE: "No tienes una cuenta en nuestro sistema. Para comenzar utiliza el comando /start.",
     SUCCESSFUL: "Tu cuenta ha sido deshabilitada de nuestro sistema."
   },
+  LEVEL_UP: {
+    NOT_REGISTERED: "Aun no tienes una cuenta en "+process.env.APP_NAME+". Escribe el comando /start para comenzar.",
+    SUCCESSFUL: (level) => "Tu nivel de usuario fue actualizado por "+process.env.ADMIN_USER+" a: "+level+".",
+    USER_ALREADY_REGISTERED: {
+      IS_AVAILABLE: (level) => "Tu nivel de usuario es "+level+".\n\nPara conocer los niveles de usuario utiliza el comando /viewLevels.\n\nEn unos momentos "+process.env.ADMIN_USER+" te enviara un mensaje para continuar con el proceso.",
+      NOT_AVAILABLE: "Tu cuenta aun no esta disponible. Para continuar con el proceso envía un mensaje a "+process.env.ADMIN_USER+" para validar tu información.",
+    },
+  },
   HELP: `
-  Lista de comandos: \n\n
+  Lista de comandos: \n
   /start: Comenzar a utilizar ${process.env.APP_NAME}.\n
   /signUp: Registrarme en ${process.env.APP_NAME}.\n
   /level: Ver mi nivel de usuario.\n
@@ -40,6 +50,7 @@ module.exports = {
   /help: Ver todos los comandos disponibles.\n
   /quit: Eliminar mi cuenta en ${process.env.APP_NAME}.\n
   `,
+  ID: (id) => "* Mi ID: "+id+" *",
   NO_PERMISSION: "No tienes permiso para acceder a este comando.",
   GET_HELP: "Utiliza el comando /help si necesitas ayuda. Para cualquier duda, sugerencia o ayuda personalizada envia un mensaje a: "+process.env.ADMIN_USER+"."
 }  

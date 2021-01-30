@@ -19,8 +19,6 @@ bot.command("level", bot_controllers.level)
 
 bot.command("levelUp", bot_controllers.levelUp)
 
-bot.command("levelDown", bot_controllers.levelDown)
-
 bot.command("quit", bot_controllers.quit)
 
 bot.command("acceptUser", bot_controllers.acceptUser)
