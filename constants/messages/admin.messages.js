@@ -24,8 +24,10 @@ module.exports = {
   },
   HELP: `
   Lista de comandos: \n
-  /quit: Deshabilitar un usario por id.\n
-  /levelUp: Bajar el nivel de un usuario por id.\n
-  /acceptUser: Aceptar un usuario por id.\n
+  /getUsers: Ver los usuarios que estan recibiendo notificaciones.\n
+  /quit: Deshabilitar un usario por id. Ej: /quit: [ID]\n
+  /levelUp: Cambiar el nuvel de un usuario por id. Ej: /levelUp: [ID] [NEW_LEVEL]\n
+  /acceptUser: Aceptar un usuario por id. Ej: /acceptUser: [ID]\n
+  /newPaymentDate: Actualiza la fecha de pago del usuario. Ej: /newPaymentDate: [ID]\n
   `,
 }  

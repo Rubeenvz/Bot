@@ -1,5 +1,24 @@
+const SHOW_ERROR = process.env.SHOW_ERROR == "true" ? true : false
+
 const USER_SERVICE = require("../constants/services/user.services")
+
 const User = require("../models/user.model")
+
+const getUsers = async (data) => {
+  let responseObj = {
+    status: USER_SERVICE.GET_ALL_AVAILABLE_USERS.FAILED
+  }
+  try {
+    const users = await User.find(data)
+    responseObj.status = USER_SERVICE.GET_ALL_AVAILABLE_USERS.SUCCESSFUL
+    responseObj.data = {
+      users
+    }
+  } catch (err) {
+    console.log("Something went wrong with: user.services.getUsers", (SHOW_ERROR ? err : ''))
+  }
+  return responseObj
+}
 
 const getCurrentUser = async (data) => {
   let responseObj = {
@@ -12,12 +31,13 @@ const getCurrentUser = async (data) => {
       user
     }
   } catch (err) {
-    console.log("Something went wrong with: user.services.findOne", err)
+    console.log("Something went wrong with: user.services.findOne", (SHOW_ERROR ? err : ''))
   }
   return responseObj
 }
 
 const signUp = async (data) => {
+  console.log(data)
   let responseObj = {
     status: USER_SERVICE.SIGN_UP.FAILED
   }
@@ -28,7 +48,7 @@ const signUp = async (data) => {
       user: newUser,
     }
   } catch (err) {
-    console.log("Something went wrong with: user.services.signUp", err)
+    console.log("Something went wrong with: user.services.signUp", (SHOW_ERROR ? err : ''))
   }
   return responseObj
 }
@@ -44,12 +64,13 @@ const editUser = async (data) => {
       user: userEdited,
     }
   } catch (err) {
-    console.log("Something went wrong with: user.services.signUp", err)
+    console.log("Something went wrong with: user.services.signUp", (SHOW_ERROR ? err : ''))
   }
   return responseObj
 }
 
 module.exports = {
+  getUsers,
   getCurrentUser,
   signUp,
   editUser

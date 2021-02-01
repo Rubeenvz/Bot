@@ -4,9 +4,11 @@ const ADMIN_ID = process.env.ADMIN_ID
 const BOT_CONTROLLER = require("../constants/controllers/bot.controllers")
 const ADMIN_MESSAGES = require("../constants/messages/admin.messages")
 const USER_MESSAGES = require("../constants/messages/user.messages")
+
 const user_services = require("../services/user.services")
 
 const message_helpers = require("../helpers/message.helpers")
+const date_helpers = require("../helpers/date.helpers")
 
 const start = async (ctx) => {
   await ctx.replyWithMarkdown(USER_MESSAGES.ID(ctx.from.id))
@@ -34,6 +36,29 @@ const start = async (ctx) => {
   }
   await ctx.reply(USER_MESSAGES.HELP)
   await ctx.reply(USER_MESSAGES.GET_HELP)
+  return responseObj
+}
+
+const getUsers = async (ctx) => {
+  await ctx.replyWithMarkdown(USER_MESSAGES.ID(ctx.from.id))
+  let responseObj = {
+    status: BOT_CONTROLLER.START.FAILED
+  }
+  if(ctx.from.id == ADMIN_ID) {
+  try {
+    let responseFromService = await user_services.getUsers({is_available: true, is_listening: true, last_payment_date: { $gte: new Date() }})
+    responseObj.data = responseFromService.data
+    responseObj.status = BOT_CONTROLLER.START.SUCCESSFUL
+  } catch (err) {
+    console.log("Something went wrong with: bot.controller.getUsers", (SHOW_ERROR ? err : ''))
+    await ctx.reply(BOT_CONTROLLER.TRY_AGAIN)
+  }
+  await ctx.reply(message_helpers.jsonToMessage(responseObj.data.users))
+  }
+  else {
+    await ctx.reply(USER_MESSAGES.NO_PERMISSION)
+  }
+  await ctx.telegram.sendMessage(user_id, USER_MESSAGES.GET_HELP)
   return responseObj
 }
 
@@ -96,7 +121,7 @@ const signUp = async (ctx) => {
 
 const viewLevels = async (ctx) => {
   await ctx.replyWithMarkdown(USER_MESSAGES.ID(ctx.from.id))
-  await ctx.reply(USER_MESSAGES.VIEW_LEVELS)
+  await ctx.reply(USER_MESSAGES.VIEW_LEVELS())
 }
 
 const level = async (ctx) => {
@@ -164,7 +189,7 @@ const levelUp = async (ctx) => {
       responseObj.data = responseFromService.data
       responseObj.status = BOT_CONTROLLER.LEVEL_UP.SUCCESSFUL
     } catch (err) {
-      console.log("Something went wrong with: bot.controller.level", (SHOW_ERROR ? err : ''))
+      console.log("Something went wrong with: bot.controller.levelUp", (SHOW_ERROR ? err : ''))
       await ctx.reply(BOT_CONTROLLER.TRY_AGAIN)
     }
     if(responseObj.data.user == null) {
@@ -232,13 +257,13 @@ const newPaymentDate = async (ctx) => {
           chat_id: user_id
         },
         data: {
-          last_payment_date: new Date()
+          last_payment_date: date_helpers.date(8, '')
         }
       })
       responseObj.data = responseFromService.data
       responseObj.status = BOT_CONTROLLER.NEW_PAYMENT_DATE.SUCCESSFUL
     } catch (err) {
-      console.log("Something went wrong with: bot.controller.acceptUser", (SHOW_ERROR ? err : ''))
+      console.log("Something went wrong with: bot.controller.newPaymentDate", (SHOW_ERROR ? err : ''))
       await ctx.reply(BOT_CONTROLLER.TRY_AGAIN)
     }
     if(responseObj.data.user) {
@@ -304,6 +329,7 @@ const help = async (ctx) => {
 
 module.exports = {
   start,
+  getUsers,
   signUp,
   viewLevels,
   level,

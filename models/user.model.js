@@ -1,5 +1,9 @@
 const { Schema, model } = require("mongoose")
 
+ const LEVEL_CONFIG = require("../constants/configs/level.configs")
+
+const date_helpers = require("../helpers/date.helpers")
+
 const UserSchema = Schema({
   chat_id: {
     type: Number,
@@ -25,12 +29,10 @@ const UserSchema = Schema({
   is_available: {
     type: Boolean,
     default: false,
-    require: false,
   },
   level: {
     type: Number,
     default: 0,
-    require: false,
   },
   registration_date: {
     type: Date,
@@ -38,8 +40,18 @@ const UserSchema = Schema({
   },
   last_payment_date: {
     type: Date,
-    default: new Date()
+    default: date_helpers.date(8, '')
+  },
+  number_of_notifications: {
+    type: Number,
+    default: LEVEL_CONFIG['level_0'].price,
+  },
+  is_listening: {
+    type: Boolean,
+    default: false
   }
+},{
+  versionKey: false
 })
 
 module.exports = model("User", UserSchema)

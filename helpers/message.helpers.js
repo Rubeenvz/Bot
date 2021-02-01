@@ -1,12 +1,15 @@
+const USER_MODEL = require("../constants/models/user.model")
+
 const jsonToMessage = (json) => {
-  let message = JSON.stringify(json);
-  message = message.replace(/[{}]/g, '')
-  message = message.replace(/,/g, '\n')
-  message = message.replace(/":"/g, ' : ')
-  message = message.replace(/":/g, ' : ')
-  message = message.replace(/"\n/g, '\n')
-  message = message.replace(/"/g, '> ')
-  return message
+  json = JSON.parse(JSON.stringify(json))
+  let message = ''
+  json.forEach(element => {
+    Object.keys(element).forEach(key => {
+      message += "> "+USER_MODEL[key]+" : "+element[key]+"\n"
+    })
+    message += "\n\n"
+  });
+  return message ? message : "jsonToMessage: No hay información."
 }
 
 module.exports = {

@@ -13,6 +13,8 @@ const bot = new telegraf.Telegraf(process.env.BOT_TOKEN)
 
 bot.start(bot_controllers.start)
 
+bot.command("getUsers", bot_controllers.getUsers)
+
 bot.command("signUp", bot_controllers.signUp)
 
 bot.command("viewLevels", bot_controllers.viewLevels)

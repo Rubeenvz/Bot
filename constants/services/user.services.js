@@ -1,4 +1,8 @@
 module.exports = {
+  GET_ALL_AVAILABLE_USERS: {
+    FAILED: "Los usuarios no fueron encontrados",
+    SUCCESSFUL: "Los usuarios fueron encontrados satisfactoriamente."
+  },
   GET_CURRENT_USER: {
     FAILED: "El usuario no fue encontrado.",
     SUCCESSFUL: "El usuario fue encontrado satisfactoriamente."

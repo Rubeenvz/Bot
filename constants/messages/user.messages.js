@@ -1,3 +1,5 @@
+const LEVEL_CONFIG = require("../configs/level.configs")
+
 const date_helpers = require("../../helpers/date.helpers")
 
 module.exports = {
@@ -41,15 +43,13 @@ module.exports = {
   NEW_PAYMENT_DATE: {
     SUCCESSFUL: "*Nueva notificación: "+date_helpers.date()+"*\n*Tu fecha de pago se actualizo a: "+date_helpers.date()+". Recibiras notificaciones hasta el dia: "+date_helpers.date(8)
   },
-  VIEW_LEVELS: `
-  Niveles de usuario:\n
-  Nivel 0: \n
-  Nivel 1: \n
-  Nivel 2: \n
-  Nivel 3: \n
-  Nivel 4: \n
-  Nivel 5: \n
-  `,
+  VIEW_LEVELS: () => {
+    let message = 'Niveles de usuario:\n'
+    Object.keys(LEVEL_CONFIG).forEach((key, index) => {
+      message += "Nivel "+index+": Recibe "+LEVEL_CONFIG[key].number_of_notifications+" notificaciones con un costo de "+LEVEL_CONFIG[key].price+".\n"
+    })
+    return message
+  },
   HELP: `
   Lista de comandos:\n
   /start: Comenzar a utilizar ${process.env.APP_NAME}.\n
