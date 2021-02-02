@@ -29,6 +29,8 @@ bot.command("acceptUser", bot_controllers.acceptUser)
 
 bot.command("newPaymentDate", bot_controllers.newPaymentDate)
 
+bot.command("resetUser", bot_controllers.resetUser)
+
 bot.help(bot_controllers.help)
 
 bot.launch()

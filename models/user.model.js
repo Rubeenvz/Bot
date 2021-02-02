@@ -44,7 +44,11 @@ const UserSchema = Schema({
   },
   number_of_notifications: {
     type: Number,
-    default: LEVEL_CONFIG['level_0'].price,
+    default: LEVEL_CONFIG['level_0'].number_of_notifications,
+  },
+  current_notificacion: {
+    type: Number,
+    default: 0,
   },
   is_listening: {
     type: Boolean,

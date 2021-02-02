@@ -244,43 +244,6 @@ const quit = async (ctx) => {
   return responseObj
 }
 
-const newPaymentDate = async (ctx) => {
-  await ctx.replyWithMarkdown(USER_MESSAGES.ID(ctx.from.id))
-  let responseObj = {
-    status: BOT_CONTROLLER.NEW_PAYMENT_DATE.FAILED
-  }
-  let user_id = ctx.message.text.split(' ')[1]
-  if(ctx.from.id == ADMIN_ID) {
-    try {
-      let responseFromService = await user_services.editUser({
-        filter: {
-          chat_id: user_id
-        },
-        data: {
-          last_payment_date: date_helpers.date(8, '')
-        }
-      })
-      responseObj.data = responseFromService.data
-      responseObj.status = BOT_CONTROLLER.NEW_PAYMENT_DATE.SUCCESSFUL
-    } catch (err) {
-      console.log("Something went wrong with: bot.controller.newPaymentDate", (SHOW_ERROR ? err : ''))
-      await ctx.reply(BOT_CONTROLLER.TRY_AGAIN)
-    }
-    if(responseObj.data.user) {
-      await ctx.telegram.sendMessage(ADMIN_ID, ADMIN_MESSAGES.NEW_PAYMENT_DATE.SUCCESSFUL)
-      await ctx.telegram.sendMessage(user_id, USER_MESSAGES.NEW_PAYMENT_DATE.SUCCESSFUL)
-    }
-    else {
-      await ctx.telegram.sendMessage(ADMIN_ID, ADMIN_MESSAGES.NEW_PAYMENT_DATE.FAILED)
-    }
-  }
-  else {
-    await ctx.reply(USER_MESSAGES.NO_PERMISSION)
-  }
-  await ctx.telegram.sendMessage(user_id, USER_MESSAGES.GET_HELP)
-  return responseObj
-}
-
 const acceptUser = async (ctx) => {
   await ctx.replyWithMarkdown(USER_MESSAGES.ID(ctx.from.id))
   let responseObj = {
@@ -318,6 +281,80 @@ const acceptUser = async (ctx) => {
   return responseObj
 }
 
+const newPaymentDate = async (ctx) => {
+  await ctx.replyWithMarkdown(USER_MESSAGES.ID(ctx.from.id))
+  let responseObj = {
+    status: BOT_CONTROLLER.NEW_PAYMENT_DATE.FAILED
+  }
+  let user_id = ctx.message.text.split(' ')[1]
+  if(ctx.from.id == ADMIN_ID) {
+    try {
+      let responseFromService = await user_services.editUser({
+        filter: {
+          chat_id: user_id
+        },
+        data: {
+          last_payment_date: date_helpers.date(8, '')
+        }
+      })
+      responseObj.data = responseFromService.data
+      responseObj.status = BOT_CONTROLLER.NEW_PAYMENT_DATE.SUCCESSFUL
+    } catch (err) {
+      console.log("Something went wrong with: bot.controller.newPaymentDate", (SHOW_ERROR ? err : ''))
+      await ctx.reply(BOT_CONTROLLER.TRY_AGAIN)
+    }
+    if(responseObj.data.user) {
+      await ctx.telegram.sendMessage(ADMIN_ID, ADMIN_MESSAGES.NEW_PAYMENT_DATE.SUCCESSFUL)
+      await ctx.telegram.sendMessage(user_id, USER_MESSAGES.NEW_PAYMENT_DATE.SUCCESSFUL)
+    }
+    else {
+      await ctx.telegram.sendMessage(ADMIN_ID, ADMIN_MESSAGES.NEW_PAYMENT_DATE.FAILED)
+    }
+  }
+  else {
+    await ctx.reply(USER_MESSAGES.NO_PERMISSION)
+  }
+  await ctx.telegram.sendMessage(user_id, USER_MESSAGES.GET_HELP)
+  return responseObj
+}
+
+const resetUser = async (ctx) => {
+  await ctx.replyWithMarkdown(USER_MESSAGES.ID(ctx.from.id))
+  let responseObj = {
+    status: BOT_CONTROLLER.NEW_PAYMENT_DATE.FAILED
+  }
+  let user_id = ctx.message.text.split(' ')[1]
+  if(ctx.from.id == ADMIN_ID) {
+    try {
+      let responseFromService = await user_services.editUser({
+        filter: {
+          chat_id: user_id
+        },
+        data: {
+          current_notificacion: 0
+        }
+      })
+      responseObj.data = responseFromService.data
+      responseObj.status = BOT_CONTROLLER.RESET_USER.SUCCESSFUL
+    } catch (err) {
+      console.log("Something went wrong with: bot.controller.resetUser", (SHOW_ERROR ? err : ''))
+      await ctx.reply(BOT_CONTROLLER.TRY_AGAIN)
+    }
+    if(responseObj.data.user) {
+      await ctx.telegram.sendMessage(ADMIN_ID, ADMIN_MESSAGES.RESET_USER.SUCCESSFUL(user_id))
+      await ctx.telegram.sendMessage(user_id, USER_MESSAGES.RESET_USER.SUCCESSFUL())
+    }
+    else {
+      await ctx.telegram.sendMessage(ADMIN_ID, ADMIN_MESSAGES.RESET_USER.FAILED)
+    }
+  }
+  else {
+    await ctx.reply(USER_MESSAGES.NO_PERMISSION)
+  }
+  await ctx.telegram.sendMessage(user_id, USER_MESSAGES.GET_HELP)
+  return responseObj
+}
+
 const help = async (ctx) => {
   await ctx.replyWithMarkdown(USER_MESSAGES.ID(ctx.from.id))
   await ctx.reply(USER_MESSAGES.HELP)
@@ -337,5 +374,6 @@ module.exports = {
   quit,
   acceptUser,
   newPaymentDate,
+  resetUser,
   help
 }

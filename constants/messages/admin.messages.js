@@ -22,6 +22,10 @@ module.exports = {
     FAILED:"El usuario no fue encontrado.",
     SUCCESSFUL: "*Nueva notificación: "+date_helpers.date()+"*\n*El usuario fue encontrado y se actualizo su fecha de pago a: "+date_helpers.date()+", el usuario recibira notificaciones hasta el dia:"+date_helpers.date(8)+"*"
   },
+  RESET_USER: {
+    FAILED:"El usuario no fue encontrado.",
+    SUCCESSFUL: (user_id) => "*Nueva notificación: "+date_helpers.date()+"*\n*El numero de notificaciones de: "+user_id+" fue reseteado.",
+  },
   HELP: `
   Lista de comandos: \n
   /getUsers: Ver los usuarios que estan recibiendo notificaciones.\n

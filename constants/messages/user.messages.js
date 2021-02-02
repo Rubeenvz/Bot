@@ -50,6 +50,9 @@ module.exports = {
     })
     return message
   },
+  RESET_USER: {
+    SUCCESSFUL: "Tu numero de notificaciones fue reseteado, seguiras recibiendo notificaciones hasta que tu cuota diaria se acabe.",
+  },
   HELP: `
   Lista de comandos:\n
   /start: Comenzar a utilizar ${process.env.APP_NAME}.\n
